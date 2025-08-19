@@ -9,22 +9,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-jibu',
     templateUrl: './jibu.page.html',
     styleUrls: ['./jibu.page.scss'],
 })
-export class JibuPage implements OnInit {
+export class JibuPage {
+    constructor(private router: Router) {}
 
-    constructor() {
-        // Constructor intentionally left empty; required for Angular dependency injection.
+    goToLogin(): void {
+        this.router.navigate(['/login']);
     }
-
-    ngOnInit(): void {
-        // Lifecycle hook - runs when the page initializes.
-        // Add initialization logic here if needed.
-    }
-
 }
