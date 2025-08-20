@@ -6,8 +6,8 @@
 //
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
+// Unless required by applicable law or agreed to in writing,
+// software distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
@@ -43,6 +43,7 @@ function buildAppRoutes(injector: Injector): Routes {
  * Create a url matcher that will only match when a given condition is met.
  */
 function buildConditionalUrlMatcher(pathOrMatcher: string | UrlMatcher, condition: () => boolean): UrlMatcher {
+
     return (segments: UrlSegment[], segmentGroup: UrlSegmentGroup, route: Route): UrlMatchResult | null => {
 
         if (!condition()) {
@@ -103,6 +104,7 @@ export type LazyDefaultStandaloneComponent = Promise<DefaultExport<Type<unknown>
  * Build url matcher using a regular expression.
  */
 export function buildRegExpUrlMatcher(regexp: RegExp): UrlMatcher {
+
     return (segments: UrlSegment[]): UrlMatchResult | null => {
 
         if (segments.length === 0) {
@@ -138,6 +140,7 @@ export type ModuleRoutesConfig = Routes | Partial<ModuleRoutes>;
  * Configure routes so that they'll only match when a given condition is met.
  */
 export function conditionalRoutes(routes: Routes, condition: () => boolean): Routes {
+
     return routes.map(route => {
         const { path, matcher, ...newRoute } = route;
         const matcherOrPath = matcher ?? path;
@@ -157,6 +160,7 @@ export function conditionalRoutes(routes: Routes, condition: () => boolean): Rou
  * Check whether a route does not have any content.
  */
 export function isEmptyRoute(route: Route): boolean {
+
     return !('component' in route)
         && !('loadComponent' in route)
         && !('children' in route)
@@ -168,6 +172,7 @@ export function isEmptyRoute(route: Route): boolean {
  * Resolve module routes.
  */
 export function resolveModuleRoutes(injector: Injector, token: InjectionToken<ModuleRoutesConfig[]>): ModuleRoutes {
+
     if (modulesRoutes.has(token)) {
         return modulesRoutes.get(token) as ModuleRoutes;
     }
@@ -226,6 +231,7 @@ export const MAIN_ROUTES: Routes = [
 export class AppRoutingModule {
 
     static forChild(routes: Routes): ModuleWithProviders<AppRoutingModule> {
+
         return {
             ngModule: AppRoutingModule,
             providers: [
