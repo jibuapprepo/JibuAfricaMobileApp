@@ -6,11 +6,12 @@
 //
 //     http://www.apache.org/licenses/LICENSE-2.0
 //
-// Unless required by applicable law or agreed to in writing,
-// software distributed under the License is distributed on an "AS IS" BASIS,
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 import { InjectionToken, Injector, ModuleWithProviders, NgModule, Type } from '@angular/core';
 import {
     RouterModule,
@@ -34,6 +35,7 @@ const modulesRoutes: WeakMap<InjectionToken<unknown>, ModuleRoutes> = new WeakMa
  * @returns App routes.
  */
 function buildAppRoutes(injector: Injector): Routes {
+
     return injector.get<Routes[]>(APP_ROUTES, []).flat();
 }
 
@@ -42,6 +44,7 @@ function buildAppRoutes(injector: Injector): Routes {
  */
 function buildConditionalUrlMatcher(pathOrMatcher: string | UrlMatcher, condition: () => boolean): UrlMatcher {
     return (segments: UrlSegment[], segmentGroup: UrlSegmentGroup, route: Route): UrlMatchResult | null => {
+
         if (!condition()) {
             return null;
         }
@@ -101,6 +104,7 @@ export type LazyDefaultStandaloneComponent = Promise<DefaultExport<Type<unknown>
  */
 export function buildRegExpUrlMatcher(regexp: RegExp): UrlMatcher {
     return (segments: UrlSegment[]): UrlMatchResult | null => {
+
         if (segments.length === 0) {
             return null;
         }
