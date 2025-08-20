@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 import { InjectionToken, Injector, ModuleWithProviders, NgModule, Type } from '@angular/core';
 import {
     RouterModule,
@@ -197,13 +198,19 @@ export const APP_ROUTES = new InjectionToken('APP_ROUTES');
 
 /**
  * 🚀 Main application routes.
- * This makes JibuPage the first page shown at app launch.
+ * This ensures JibuPage is the default entry page at app launch.
  */
 export const MAIN_ROUTES: Routes = [
     {
         path: '',
+        pathMatch: 'full',
         loadComponent: () =>
             import('src/core/features/jibu/jibu.page').then(m => m.JibuPage),
+    },
+    // fallback redirect for unknown paths
+    {
+        path: '**',
+        redirectTo: '',
     },
 ];
 
