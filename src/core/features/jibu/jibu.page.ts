@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -20,9 +21,11 @@ import { Router } from '@angular/router';
     styleUrls: ['./jibu.page.scss'],
 })
 export class JibuPage {
+
     constructor(private router: Router) {}
 
     goToLogin(): void {
         this.router.navigate(['/login']);
     }
+
 }
